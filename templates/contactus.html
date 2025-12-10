@@ -1,0 +1,140 @@
+{% extends "base.html" %}
+
+{% block title %}Contact Us{% endblock %}
+
+{% block content %}
+<section style="padding: 5rem 0; background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);">
+    <div class="container">
+        <div class="section-title" style="text-align: center; margin-bottom: 4rem;">
+            <h2 style="font-size: 3rem; color: #ffffff; margin-bottom: 1rem; font-weight: 700;">Contact Us</h2>
+            <p style="font-size: 1.2rem; color: #e0e0e0; max-width: 600px; margin: 0 auto;">Get in touch with our team - we're here to help you with any questions</p>
+        </div>
+        
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start;">
+            <!-- Contact Information -->
+            <div style="background: #0a0a0a; padding: 3rem; border-radius: 16px; border: 1px solid #333333;">
+                <h3 style="font-size: 2rem; margin-bottom: 2.5rem; color: #ffffff; font-weight: 600;">Get In Touch</h3>
+                
+                <div style="display: flex; flex-direction: column; gap: 2.5rem;">
+                    <div style="display: flex; align-items: flex-start; gap: 1.5rem;">
+                        <div style="background: #0066ff; padding: 1rem; border-radius: 12px; display: flex; align-items: center; justify-content: center;">
+                            <i class="fas fa-map-marker-alt" style="color: #ffffff; font-size: 1.5rem;"></i>
+                        </div>
+                        <div>
+                            <h4 style="color: #ffffff; margin-bottom: 0.8rem; font-size: 1.3rem; font-weight: 600;">Our Location</h4>
+                            <p style="color: #b0b0b0; font-size: 1.1rem; line-height: 1.6;">123 Tech Street, Innovation City<br>IC 12345, United States</p>
+                        </div>
+                    </div>
+                    
+                    <div style="display: flex; align-items: flex-start; gap: 1.5rem;">
+                        <div style="background: #0066ff; padding: 1rem; border-radius: 12px; display: flex; align-items: center; justify-content: center;">
+                            <i class="fas fa-phone" style="color: #ffffff; font-size: 1.5rem;"></i>
+                        </div>
+                        <div>
+                            <h4 style="color: #ffffff; margin-bottom: 0.8rem; font-size: 1.3rem; font-weight: 600;">Phone Number</h4>
+                            <p style="color: #b0b0b0; font-size: 1.1rem; line-height: 1.6;">+1 (555) 123-4567<br>+1 (555) 123-4568</p>
+                        </div>
+                    </div>
+                    
+                    <div style="display: flex; align-items: flex-start; gap: 1.5rem;">
+                        <div style="background: #0066ff; padding: 1rem; border-radius: 12px; display: flex; align-items: center; justify-content: center;">
+                            <i class="fas fa-envelope" style="color: #ffffff; font-size: 1.5rem;"></i>
+                        </div>
+                        <div>
+                            <h4 style="color: #ffffff; margin-bottom: 0.8rem; font-size: 1.3rem; font-weight: 600;">Email Address</h4>
+                            <p style="color: #b0b0b0; font-size: 1.1rem; line-height: 1.6;">support@spamguard.io<br>info@spamguard.io</p>
+                        </div>
+                    </div>
+                    
+                    <div style="display: flex; align-items: flex-start; gap: 1.5rem;">
+                        <div style="background: #0066ff; padding: 1rem; border-radius: 12px; display: flex; align-items: center; justify-content: center;">
+                            <i class="fas fa-clock" style="color: #ffffff; font-size: 1.5rem;"></i>
+                        </div>
+                        <div>
+                            <h4 style="color: #ffffff; margin-bottom: 0.8rem; font-size: 1.3rem; font-weight: 600;">Working Hours</h4>
+                            <p style="color: #b0b0b0; font-size: 1.1rem; line-height: 1.6; margin-bottom: 0.5rem;">Monday - Friday: 9:00 AM - 6:00 PM EST</p>
+                            <p style="color: #b0b0b0; font-size: 1.1rem; line-height: 1.6;">Saturday: 10:00 AM - 2:00 PM EST</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Form -->
+            <div style="background: #0a0a0a; padding: 3rem; border-radius: 16px; border: 1px solid #333333;">
+                <h3 style="font-size: 2rem; margin-bottom: 2.5rem; color: #ffffff; font-weight: 600;">Send us a Message</h3>
+                <form>
+                    <div style="margin-bottom: 2rem;">
+                        <label style="display: block; margin-bottom: 0.8rem; font-weight: 600; color: #ffffff; font-size: 1.1rem;">Full Name</label>
+                        <input type="text" placeholder="Your Full Name" style="width: 100%; padding: 1.2rem; border: 2px solid #333333; border-radius: 10px; background: #000000; color: #ffffff; font-size: 1rem; transition: all 0.3s ease;">
+                    </div>
+                    <div style="margin-bottom: 2rem;">
+                        <label style="display: block; margin-bottom: 0.8rem; font-weight: 600; color: #ffffff; font-size: 1.1rem;">Email Address</label>
+                        <input type="email" placeholder="your.email@example.com" style="width: 100%; padding: 1.2rem; border: 2px solid #333333; border-radius: 10px; background: #000000; color: #ffffff; font-size: 1rem; transition: all 0.3s ease;">
+                    </div>
+                    <div style="margin-bottom: 2rem;">
+                        <label style="display: block; margin-bottom: 0.8rem; font-weight: 600; color: #ffffff; font-size: 1.1rem;">Subject</label>
+                        <input type="text" placeholder="What is this regarding?" style="width: 100%; padding: 1.2rem; border: 2px solid #333333; border-radius: 10px; background: #000000; color: #ffffff; font-size: 1rem; transition: all 0.3s ease;">
+                    </div>
+                    <div style="margin-bottom: 2.5rem;">
+                        <label style="display: block; margin-bottom: 0.8rem; font-weight: 600; color: #ffffff; font-size: 1.1rem;">Message</label>
+                        <textarea placeholder="Tell us how we can help you..." style="width: 100%; padding: 1.2rem; border: 2px solid #333333; border-radius: 10px; background: #000000; color: #ffffff; font-size: 1rem; min-height: 150px; resize: vertical; transition: all 0.3s ease;"></textarea>
+                    </div>
+                    <button type="submit" style="width: 100%; padding: 1.3rem; background: linear-gradient(135deg, #0066ff 0%, #0052cc 100%); color: #ffffff; border: none; border-radius: 10px; font-size: 1.1rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease; text-transform: uppercase; letter-spacing: 0.5px;">
+                        Send Message
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Additional Contact Section -->
+        <div style="margin-top: 5rem; text-align: center;">
+            <div style="background: #0a0a0a; padding: 3rem; border-radius: 16px; border: 1px solid #333333;">
+                <h3 style="font-size: 2rem; margin-bottom: 1.5rem; color: #ffffff; font-weight: 600;">Prefer Other Methods?</h3>
+                <p style="color: #b0b0b0; font-size: 1.1rem; margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+                    We're available through multiple channels to ensure you get the support you need.
+                </p>
+                <div style="display: flex; justify-content: center; gap: 2rem;">
+                    <div style="text-align: center;">
+                        <div style="background: #0066ff; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem;">
+                            <i class="fas fa-comments" style="color: #ffffff; font-size: 1.5rem;"></i>
+                        </div>
+                        <p style="color: #ffffff; font-weight: 600;">Live Chat</p>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="background: #0066ff; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem;">
+                            <i class="fas fa-video" style="color: #ffffff; font-size: 1.5rem;"></i>
+                        </div>
+                        <p style="color: #ffffff; font-weight: 600;">Video Call</p>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="background: #0066ff; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem;">
+                            <i class="fas fa-headset" style="color: #ffffff; font-size: 1.5rem;"></i>
+                        </div>
+                        <p style="color: #ffffff; font-weight: 600;">Support</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    input:focus, textarea:focus {
+        outline: none;
+        border-color: #0066ff !important;
+        box-shadow: 0 0 0 3px rgba(0, 102, 255, 0.1);
+    }
+    
+    button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(0, 102, 255, 0.3);
+    }
+    
+    .section-title h2 {
+        background: linear-gradient(135deg, #0066ff 0%, #00aaff 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+</style>
+{% endblock %}

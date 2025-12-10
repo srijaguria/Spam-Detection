@@ -1,0 +1,339 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.detection-body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #000000 100%);
+    min-height: calc(100vh - 140px);
+    padding: 40px 20px;
+    color: #ffffff;
+}
+
+.detection-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    background: #0a0a0a;
+    padding: 50px;
+    border-radius: 20px;
+    border: 1px solid #333333;
+    box-shadow: 0 20px 60px rgba(0, 102, 255, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.detection-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #0066ff, #00aaff, #0066ff);
+}
+
+.detection-h1 {
+    text-align: center;
+    color: #ffffff;
+    margin-bottom: 30px;
+    font-size: 3rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #0066ff 0%, #00aaff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.form-group {
+    margin-bottom: 30px;
+}
+
+.detection-label {
+    display: block;
+    margin-bottom: 12px;
+    font-weight: 600;
+    color: #ffffff;
+    font-size: 1.1rem;
+}
+
+.detection-input, .detection-textarea {
+    width: 100%;
+    padding: 18px;
+    border: 2px solid #333333;
+    border-radius: 12px;
+    font-size: 16px;
+    background: #000000;
+    color: #ffffff;
+    transition: all 0.3s ease;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.detection-input:focus, .detection-textarea:focus {
+    outline: none;
+    border-color: #0066ff;
+    box-shadow: 0 0 0 3px rgba(0, 102, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+.detection-input::placeholder, .detection-textarea::placeholder {
+    color: #666666;
+}
+
+.detection-textarea {
+    height: 220px;
+    resize: vertical;
+    line-height: 1.6;
+}
+
+.button-container {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.form-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.detection-btn {
+    background: linear-gradient(135deg, #0066ff 0%, #0052cc 100%);
+    color: white;
+    padding: 16px 35px;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+    min-width: 160px;
+}
+
+.detection-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(0, 102, 255, 0.4);
+}
+
+.btn-secondary {
+    background: rgb(9, 74, 148);
+}
+
+.btn-secondary:hover {
+    box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
+}
+
+.result-container {
+    margin-top: 40px;
+    animation: slideIn 0.5s ease;
+}
+
+.final-result {
+    padding: 25px;
+    border-radius: 15px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.3rem;
+    border: 2px solid;
+    margin-bottom: 20px;
+}
+
+.confidence-bar {
+    width: 100%;
+    height: 20px;
+    background: #333333;
+    border-radius: 10px;
+    margin: 15px 0;
+    overflow: hidden;
+}
+
+.confidence-fill {
+    height: 100%;
+    border-radius: 10px;
+    transition: width 0.5s ease;
+}
+
+.safe-fill {
+    background: linear-gradient(90deg, #10b981, #34d399);
+}
+
+.spam-fill {
+    background: linear-gradient(90deg, #ef4444, #f87171);
+}
+
+.confidence-text {
+    font-size: 0.9rem;
+    color: #cccccc;
+    margin-top: 5px;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.safe-result {
+    background: rgba(21, 87, 36, 0.1);
+    color: #4ade80;
+    border-color: #4ade80;
+}
+
+.spam-result {
+    background: rgba(114, 28, 36, 0.1);
+    color: #f87171;
+    border-color: #f87171;
+}
+
+.model-analysis {
+    background: rgba(0, 102, 255, 0.05);
+    padding: 25px;
+    border-radius: 15px;
+    margin-top: 20px;
+    border: 1px solid rgba(0, 102, 255, 0.2);
+}
+
+.model-analysis h3 {
+    color: #0066ff;
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 1.2rem;
+}
+
+.model-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.model-card {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.model-card:hover {
+    transform: translateY(-5px);
+}
+
+.model-name {
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #ffffff;
+    font-size: 1.1rem;
+}
+
+.model-prediction {
+    font-size: 1.1rem;
+    margin: 10px 0;
+    font-weight: bold;
+}
+
+.model-confidence {
+    font-size: 0.9rem;
+    color: #cccccc;
+    margin-top: 5px;
+}
+
+.model-accuracy {
+    font-size: 0.8rem;
+    color: #888888;
+    margin-top: 5px;
+}
+
+.prediction-safe {
+    color: #4ade80;
+}
+
+.prediction-spam {
+    color: #f87171;
+}
+
+.combined-result {
+    background: rgba(0, 102, 255, 0.1);
+    padding: 20px;
+    border-radius: 12px;
+    margin-top: 20px;
+    text-align: center;
+    border: 1px solid rgba(0, 102, 255, 0.3);
+}
+
+.combined-result h4 {
+    color: #0066ff;
+    margin-bottom: 10px;
+}
+
+.result-buttons {
+    text-align: center;
+    margin-top: 30px;
+    animation: slideIn 0.5s ease 0.2s both;
+}
+
+.result-buttons .form-buttons {
+    margin-top: 20px;
+}
+
+.icon {
+    font-size: 1.5rem;
+    margin-right: 8px;
+}
+
+.feature-tag {
+    display: inline-block;
+    background: rgba(0, 102, 255, 0.1);
+    color: #0066ff;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    border: 1px solid rgba(0, 102, 255, 0.3);
+}
+
+.instructions {
+    background: rgba(0, 102, 255, 0.05);
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 30px;
+    border-left: 4px solid #0066ff;
+}
+
+.instructions h3 {
+    color: #0066ff;
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+}
+
+.instructions ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.instructions li {
+    padding: 5px 0;
+    color: #cccccc;
+    position: relative;
+    padding-left: 20px;
+}
+
+.instructions li::before {
+    content: '•';
+    color: #0066ff;
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+}

@@ -1,0 +1,873 @@
+{% extends "base.html" %}
+
+{% block title %}Home - InboxShield{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Rajdhani:wght@600;700&family=Exo+2:wght@600;700&display=swap" rel="stylesheet">
+<style>
+    :root {
+        --primary: #4a6cf7;
+        --primary-light: #e8edff;
+        --surface: #ffffff;
+        --surface-light: #f9fafc;
+        --surface-lighter: #f8fafc;
+        --text: #1e293b;
+        --text-light: #64748b;
+        --border: #e2e8f0;
+        --dark-bg: #0f172a;
+        --dark-card: #1e293b;
+        --navbar-bg: #ffffff;
+        --navbar-text: #1e293b;
+        --navbar-border: #e2e8f0;
+    }
+    
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    
+    body {
+        background-color: var(--surface-lighter);
+        color: var(--text);
+        line-height: 1.6;
+    }
+    
+    /* Navbar Styles */
+    .navbar {
+        background-color: var(--navbar-bg) !important;
+        color: var(--navbar-text) !important;
+        border-bottom: 1px solid var(--navbar-border) !important;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) !important;
+    }
+    
+    .navbar a, .navbar-brand {
+        color: var(--navbar-text) !important;
+    }
+    
+    .navbar a:hover {
+        color: var(--primary) !important;
+    }
+    
+    .navbar-toggler {
+        border-color: var(--border) !important;
+    }
+    
+    .navbar-toggler-icon {
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%231e293b' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+    }
+    
+    /* Logo Style for Navbar */
+    .navbar-brand {
+        font-weight: 700;
+        font-size: 1.5rem;
+        color: var(--primary) !important;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+    
+    .navbar-brand i {
+        font-size: 1.8rem;
+    }
+    
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+    }
+    
+    .section {
+        padding: 5rem 0;
+    }
+    
+    .section-light {
+        background: var(--surface);
+    }
+    
+    .section-lighter {
+        background: var(--surface-lighter);
+    }
+    
+    .section-gradient {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+    }
+    
+    .section-primary {
+        background: linear-gradient(135deg, #4a6cf7 0%, #3b5bdb 100%);
+        color: white;
+    }
+    
+    .section-dark {
+        background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+        color: white;
+    }
+    
+    .section-title {
+        text-align: center;
+        margin-bottom: 3rem;
+    }
+    
+    .section-title h2 {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        color: var(--text);
+    }
+    
+    .section-title p {
+        font-size: 1.2rem;
+        color: var(--text-light);
+        max-width: 600px;
+        margin: 0 auto;
+    }
+    
+    .section-dark .section-title h2 {
+        color: white;
+    }
+    
+    .section-dark .section-title p {
+        color: #cbd5e1;
+    }
+    
+    .section-gradient .section-title p {
+        color: rgba(255, 255, 255, 0.9);
+    }
+    
+    .btn {
+        display: inline-block;
+        padding: 0.8rem 1.8rem;
+        background: var(--primary);
+        color: white;
+        text-decoration: none;
+        border-radius: 8px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        border: 2px solid var(--primary);
+        box-shadow: 0 4px 6px rgba(74, 108, 247, 0.2);
+    }
+    
+    .btn:hover {
+        background: white;
+        color: var(--primary);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 12px rgba(74, 108, 247, 0.3);
+    }
+    
+    .btn-outline {
+        background: transparent;
+        color: var(--primary);
+        border: 2px solid var(--primary);
+    }
+    
+    .btn-outline:hover {
+        background: var(--primary);
+        color: white;
+    }
+    
+    .btn-white {
+        background: white;
+        color: var(--primary);
+        border: 2px solid white;
+    }
+    
+    .btn-white:hover {
+        background: transparent;
+        color: white;
+    }
+    
+    /* Hero Section */
+    .hero {
+        background: linear-gradient(135deg, #4a6cf7 0%, #3b5bdb 100%);
+        text-align: center;
+        padding: 6rem 0;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .hero::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: 
+            radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+            radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+        pointer-events: none;
+    }
+    
+    .hero h1 {
+        font-size: 3rem;
+        color: white;
+        margin-bottom: 1.5rem;
+        line-height: 1.2;
+        position: relative;
+        z-index: 1;
+    }
+    
+    .hero p {
+        font-size: 1.2rem;
+        color: rgba(255, 255, 255, 0.9);
+        max-width: 600px;
+        margin: 0 auto 2.5rem;
+        position: relative;
+        z-index: 1;
+    }
+    
+    .hero-buttons {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        flex-wrap: wrap;
+        position: relative;
+        z-index: 1;
+    }
+    
+    /* How It Works Section */
+    .steps-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-top: 3rem;
+    }
+    
+    .step-card {
+        background: var(--surface);
+        padding: 2.5rem;
+        border-radius: 16px;
+        border: 1px solid var(--border);
+        text-align: center;
+        position: relative;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    }
+    
+    .step-card:hover {
+        transform: translateY(-8px);
+        border-color: var(--primary);
+        box-shadow: 0 20px 40px rgba(74, 108, 247, 0.1);
+    }
+    
+    .step-icon {
+        background: linear-gradient(135deg, var(--primary) 0%, #3b5bdb 100%);
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 1.5rem;
+        box-shadow: 0 8px 20px rgba(74, 108, 247, 0.3);
+    }
+    
+    .step-number {
+        position: absolute;
+        top: -15px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: var(--primary);
+        color: white;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        font-size: 1.2rem;
+        border: 4px solid var(--surface-lighter);
+        box-shadow: 0 4px 8px rgba(74, 108, 247, 0.3);
+        animation: pulse 2s ease-in-out infinite;
+    }
+    
+    /* Features Grid */
+    .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+        margin-top: 3rem;
+    }
+    
+    .feature-card {
+        text-align: center;
+        background: var(--surface);
+        padding: 2rem;
+        border-radius: 12px;
+        border: 1px solid var(--border);
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.03);
+    }
+    
+    .feature-card:hover {
+        transform: translateY(-5px);
+        border-color: var(--primary);
+        box-shadow: 0 10px 20px rgba(74, 108, 247, 0.1);
+    }
+    
+    .feature-icon {
+        font-size: 2.5rem;
+        color: var(--primary);
+        margin-bottom: 1rem;
+        background: var(--primary-light);
+        width: 60px;
+        height: 60px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 1.5rem;
+    }
+    
+    /* Use Cases Grid */
+    .usecase-grid {
+        display: grid;
+        gap: 1.5rem;
+    }
+    
+    .usecase-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 1rem;
+        padding: 1.5rem;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 12px;
+        transition: all 0.3s ease;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    .usecase-item:hover {
+        background: rgba(255, 255, 255, 0.2);
+        transform: translateX(5px);
+        border-color: rgba(255, 255, 255, 0.3);
+    }
+    
+    .usecase-icon {
+        background: rgba(255, 255, 255, 0.2);
+        color: white;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1rem;
+        flex-shrink: 0;
+        margin-top: 0.2rem;
+    }
+    
+    /* Privacy Cards */
+    .privacy-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+        gap: 2rem;
+    }
+    
+    @media (max-width: 768px) {
+        .privacy-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+    
+    .privacy-card {
+        background: var(--surface);
+        padding: 2rem;
+        border-radius: 12px;
+        border: 1px solid var(--border);
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    }
+    
+    .privacy-card:hover {
+        transform: translateY(-5px);
+        border-color: var(--primary);
+        box-shadow: 0 10px 30px rgba(74, 108, 247, 0.1);
+    }
+    
+    /* Advanced Features */
+    .advanced-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+        align-items: start;
+    }
+    
+    @media (max-width: 768px) {
+        .advanced-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+    
+    /* CTA Box */
+    .cta-box {
+        background: var(--surface);
+        padding: 3rem;
+        border-radius: 20px;
+        border: 1px solid var(--border);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        max-width: 600px;
+        margin: 0 auto;
+        text-align: center;
+    }
+    
+    .section-dark .cta-box {
+        background: rgba(30, 41, 59, 0.8);
+        border: 1px solid rgba(59, 130, 246, 0.3);
+        backdrop-filter: blur(10px);
+    }
+    
+    /* Stats Box */
+    .stats-box {
+        background: linear-gradient(135deg, var(--primary) 0%, #3b5bdb 100%);
+        padding: 2.5rem;
+        border-radius: 16px;
+        text-align: center;
+        box-shadow: 0 10px 20px rgba(74, 108, 247, 0.3);
+    }
+    
+    .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+    }
+    
+    /* Animations */
+    @keyframes pulse {
+        0%, 100% { transform: translateX(-50%) scale(1); }
+        50% { transform: translateX(-50%) scale(1.1); }
+    }
+    
+    @keyframes glow {
+        0%, 100% { box-shadow: 0 0 20px rgba(74, 108, 247, 0.3); }
+        50% { box-shadow: 0 0 30px rgba(74, 108, 247, 0.6); }
+    }
+    
+    /* Trusted By Section */
+    .trusted-by {
+        text-align: center;
+        padding: 3rem 0;
+        background: var(--surface);
+    }
+    
+    .trusted-logos {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 3rem;
+        flex-wrap: wrap;
+        margin-top: 2rem;
+        opacity: 0.7;
+    }
+    
+    .trusted-logos i {
+        font-size: 2.5rem;
+        color: var(--primary);
+    }
+</style>
+
+<!-- Hero Section -->
+<section class="hero">
+    <div class="container">
+        <h1>Welcome to InboxShield</h1>
+        <p>Advanced AI-powered spam detection system. Protect your inbox from unwanted messages with our cutting-edge technology.</p>
+        <div class="hero-buttons">
+            <a href="/detection" class="btn btn-white">Try It Now</a>
+            <a href="/aboutus" class="btn" style="background: rgba(255, 255, 255, 0.1); border: 2px solid rgba(255, 255, 255, 0.3); color: white;">Learn More</a>
+        </div>
+    </div>
+</section>
+
+<!-- How It Works Section -->
+<section class="section section-lighter">
+    <div class="container">
+        <div class="section-title">
+            <h2 style="color: var(--text);">How InboxShield Works</h2>
+            <p>Simple steps to protect your inbox from spam</p>
+        </div>
+
+        <div class="steps-grid">
+            <!-- Step 1 -->
+            <div class="step-card">
+                <div class="step-number">1</div>
+                <div class="step-icon">
+                    <i class="fas fa-paper-plane" style="font-size: 2rem; color: white;"></i>
+                </div>
+                <h3 style="font-size: 1.5rem; color: var(--text); margin-bottom: 1rem;">Forward Email</h3>
+                <p style="color: var(--text-light); line-height: 1.6;">
+                    Simply forward any suspicious email to our secure server for instant analysis.
+                </p>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="step-card">
+                <div class="step-number">2</div>
+                <div class="step-icon">
+                    <i class="fas fa-brain" style="font-size: 2rem; color: white;"></i>
+                </div>
+                <h3 style="font-size: 1.5rem; color: var(--text); margin-bottom: 1rem;">AI Analysis</h3>
+                <p style="color: var(--text-light); line-height: 1.6;">
+                    Advanced algorithms analyze email patterns, content, and metadata to detect threats.
+                </p>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="step-card">
+                <div class="step-number">3</div>
+                <div class="step-icon">
+                    <i class="fas fa-chart-bar" style="font-size: 2rem; color: white;"></i>
+                </div>
+                <h3 style="font-size: 1.5rem; color: var(--text); margin-bottom: 1rem;">Instant Report</h3>
+                <p style="color: var(--text-light); line-height: 1.6;">
+                    Receive detailed security assessment with automatic recommendations and threat analysis.
+                </p>
+            </div>
+        </div>
+
+        <!-- Features -->
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <h4 style="color: var(--text); margin-bottom: 0.5rem;">Real-time Processing</h4>
+                <p style="color: var(--text-light); font-size: 0.95rem; margin: 0;">Instant analysis results</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h4 style="color: var(--text); margin-bottom: 0.5rem;">Enterprise Security</h4>
+                <p style="color: var(--text-light); font-size: 0.95rem; margin: 0;">Military-grade protection</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <h4 style="color: var(--text); margin-bottom: 0.5rem;">Smart Analytics</h4>
+                <p style="color: var(--text-light); font-size: 0.95rem; margin: 0;">Advanced threat detection</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-user-friends"></i>
+                </div>
+                <h4 style="color: var(--text); margin-bottom: 0.5rem;">Team Collaboration</h4>
+                <p style="color: var(--text-light); font-size: 0.95rem; margin: 0;">Share insights securely</p>
+            </div>
+        </div>
+
+        <!-- CTA -->
+        <div style="text-align: center; margin-top: 3rem;">
+            <div class="cta-box">
+                <h3 style="color: var(--text); margin-bottom: 1rem;">Ready to Secure Your Inbox?</h3>
+                <p style="color: var(--text-light); margin-bottom: 1.5rem;">Start protecting your emails today with our advanced AI-powered detection system.</p>
+                <a href="/detection" class="btn" style="margin-right: 1rem;">
+                    <i class="fas fa-shield-alt" style="margin-right: 0.5rem;"></i>
+                    Start Detection
+                </a>
+                <a href="/aboutus" class="btn btn-outline">
+                    Learn More
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Email Testing Section -->
+<section class="section section-gradient">
+    <div class="container">
+        <div class="section-title">
+            <h2>If you're sending emails, you need spam testing</h2>
+            <p>Ensure your messages reach the inbox, not the spam folder</p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;">
+            <!-- Left Content -->
+            <div>
+                <div style="background: rgba(255, 255, 255, 0.15); padding: 1.5rem; border-radius: 16px; backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2);">
+                    <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                        <div style="background: white; color: #667eea; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 1.2rem;">
+                            @
+                        </div>
+                        <div>
+                            <h4 style="margin: 0; font-size: 1.2rem; color: white;">Your message performance</h4>
+                            <p style="margin: 0; opacity: 0.8; font-size: 0.9rem; color: rgba(255,255,255,0.9);">Real-time analytics</p>
+                        </div>
+                    </div>
+                    <div style="display: flex; gap: 1rem; text-align: center;">
+                        <div style="flex: 1;">
+                            <div style="font-size: 2.2rem; font-weight: bold; margin-bottom: 0.5rem; color: white;">98%</div>
+                            <div style="font-size: 0.9rem; opacity: 0.9; color: white;">DELIVERY SPEED</div>
+                        </div>
+                        <div style="flex: 1;">
+                            <div style="font-size: 2.2rem; font-weight: bold; margin-bottom: 0.5rem; color: white;">99%</div>
+                            <div style="font-size: 0.9rem; opacity: 0.9; color: white;">FILTER AVOIDANCE</div>
+                        </div>
+                        <div style="flex: 1;">
+                            <div style="font-size: 2.2rem; font-weight: bold; margin-bottom: 0.5rem; color: white;">95%</div>
+                            <div style="font-size: 0.9rem; opacity: 0.9; color: white;">CLIENT SATISFACTION</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Content - Use Cases -->
+            <div>
+                <div class="usecase-grid">
+                    <div class="usecase-item">
+                        <div class="usecase-icon">
+                            <i class="fas fa-bullseye"></i>
+                        </div>
+                        <div>
+                            <h4 style="margin: 0 0 0.5rem 0; font-size: 1.1rem; color: white;">Cold Outreach Campaigns</h4>
+                            <p style="margin: 0; opacity: 0.9; line-height: 1.5; font-size: 0.9rem; color: rgba(255,255,255,0.9);">
+                                Maintain campaign success by avoiding email spam filters.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="usecase-item">
+                        <div class="usecase-icon">
+                            <i class="fas fa-building"></i>
+                        </div>
+                        <div>
+                            <h4 style="margin: 0 0 0.5rem 0; font-size: 1.1rem; color: white;">Business Communication</h4>
+                            <p style="margin: 0; opacity: 0.9; line-height: 1.5; font-size: 0.9rem; color: rgba(255,255,255,0.9);">
+                                Ensure all business emails hit the inbox every time.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="usecase-item">
+                        <div class="usecase-icon">
+                            <i class="fas fa-newspaper"></i>
+                        </div>
+                        <div>
+                            <h4 style="margin: 0 0 0.5rem 0; font-size: 1.1rem; color: white;">Newsletters</h4>
+                            <p style="margin: 0; opacity: 0.9; line-height: 1.5; font-size: 0.9rem; color: rgba(255,255,255,0.9);">
+                                Monitor newsletter performance and spam test results over time.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="usecase-item">
+                        <div class="usecase-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div>
+                            <h4 style="margin: 0 0 0.5rem 0; font-size: 1.1rem; color: white;">Recruitment Emails</h4>
+                            <p style="margin: 0; opacity: 0.9; line-height: 1.5; font-size: 0.9rem; color: rgba(255,255,255,0.9);">
+                                Don't miss perfect candidates due to high spam rates.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="usecase-item">
+                        <div class="usecase-icon">
+                            <i class="fas fa-receipt"></i>
+                        </div>
+                        <div>
+                            <h4 style="margin: 0 0 0.5rem 0; font-size: 1.1rem; color: white;">Transactional Emails</h4>
+                            <p style="margin: 0; opacity: 0.9; line-height: 1.5; font-size: 0.9rem; color: rgba(255,255,255,0.9);">
+                                Critical emails like confirmations, receipts, and alerts.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Advanced Features Section -->
+<section class="section section-lighter">
+    <div class="container">
+        <div class="section-title">
+            <h2 style="color: var(--text);">Advanced Testing Features</h2>
+            <p>Powerful tools for comprehensive email testing and optimization</p>
+        </div>
+
+        <div class="advanced-grid">
+            <!-- Left Column -->
+            <div style="display: flex; flex-direction: column; gap: 2rem;">
+                <div class="privacy-card">
+                    <h3 style="font-size: 1.4rem; margin-bottom: 1rem; color: var(--text);">
+                        Streamlined Autotest Management
+                    </h3>
+                    <p style="color: var(--text-light); line-height: 1.6; margin: 0;">
+                        Effortlessly adapt your testing strategy. Swap autotest letters and retain comprehensive statistics.
+                    </p>
+                </div>
+
+                <div class="privacy-card">
+                    <h3 style="font-size: 1.4rem; margin-bottom: 1rem; color: var(--text);">
+                        Tailored Email Delivery
+                    </h3>
+                    <p style="color: var(--text-light); line-height: 1.6; margin: 0;">
+                        Revolutionary throttling logic ensures effortless delivery in high-volume campaigns.
+                    </p>
+                </div>
+
+                <div class="privacy-card">
+                    <h3 style="font-size: 1.4rem; margin-bottom: 1rem; color: var(--text);">
+                        Custom Notes & Alerts
+                    </h3>
+                    <p style="color: var(--text-light); line-height: 1.6; margin: 0;">
+                        Stay informed with customizable schedulers and proactive email monitoring.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Right Column -->
+            <div style="display: flex; flex-direction: column; gap: 2rem;">
+                <div class="privacy-card">
+                    <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                        <div style="background: linear-gradient(135deg, #8b5cf6 0%, #a855f7 100%); width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                            <i class="fas fa-chart-line" style="color: white; font-size: 1.5rem;"></i>
+                        </div>
+                        <h3 style="font-size: 1.4rem; margin: 0; color: var(--text);">Enhanced Insights Dashboard</h3>
+                    </div>
+                    <p style="color: var(--text-light); line-height: 1.6; margin: 0;">
+                        Access a year's worth of insights effortlessly. Make informed decisions with comprehensive analytics.
+                    </p>
+                </div>
+
+                <div class="privacy-card">
+                    <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                        <div style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                            <i class="fas fa-server" style="color: white; font-size: 1.5rem;"></i>
+                        </div>
+                        <h3 style="font-size: 1.4rem; margin: 0; color: var(--text);">Seamless MailReader Services</h3>
+                    </div>
+                    <p style="color: var(--text-light); line-height: 1.6; margin: 0;">
+                        Optimized scaling for error-free testing and comprehensive autotest scheduling.
+                    </p>
+                </div>
+
+                <!-- Stats Box -->
+                <div class="stats-box">
+                    <div class="stats-grid">
+                        <div>
+                            <div style="font-size: 2.2rem; font-weight: bold; color: white; margin-bottom: 0.5rem;">99.9%</div>
+                            <div style="font-size: 0.9rem; color: rgba(255,255,255,0.9);">System Uptime</div>
+                        </div>
+                        <div>
+                            <div style="font-size: 2.2rem; font-weight: bold; color: white; margin-bottom: 0.5rem;">24/7</div>
+                            <div style="font-size: 0.9rem; color: rgba(255,255,255,0.9);">Monitoring</div>
+                        </div>
+                        <div>
+                            <div style="font-size: 2.2rem; font-weight: bold; color: white; margin-bottom: 0.5rem;">50ms</div>
+                            <div style="font-size: 0.9rem; color: rgba(255,255,255,0.9);">Response Time</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA Button -->
+        <div style="text-align: center; margin-top: 3rem;">
+            <a href="/detection" class="btn">
+                <i class="fas fa-rocket" style="margin-right: 0.5rem;"></i>
+                Start Advanced Testing
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Trusted By Section -->
+<section class="trusted-by">
+    <div class="container">
+        <div class="section-title">
+            <h2 style="color: var(--text);">Trusted By Industry Leaders</h2>
+            <p>Join thousands of businesses that trust InboxShield</p>
+        </div>
+        <div class="trusted-logos">
+            <i class="fab fa-microsoft"></i>
+            <i class="fab fa-google"></i>
+            <i class="fab fa-amazon"></i>
+            <i class="fab fa-slack"></i>
+            <i class="fab fa-dropbox"></i>
+        </div>
+    </div>
+</section>
+
+<!-- Privacy & Research Commitment Section -->
+<section class="section section-light">
+    <div class="container">
+        <div class="section-title">
+            <h2 style="color: var(--text);">Privacy & Research Commitment</h2>
+            <p>Your security and privacy are our top priorities</p>
+        </div>
+
+        <div style="max-width: 900px; margin: 0 auto 3rem;">
+            <div class="privacy-card" style="background: var(--primary-light); border-color: var(--primary);">
+                <p style="color: var(--text); line-height: 1.7; font-size: 1.1rem; margin: 0; text-align: center;">
+                    <strong style="color: var(--primary);">Your Privacy Matters:</strong> We analyze emails to improve threat detection and help others determine message security. All data is fully anonymized before use in research or shared tasks.
+                </p>
+            </div>
+        </div>
+
+        <div class="privacy-grid">
+            <div class="privacy-card">
+                <div style="display: flex; align-items: flex-start; gap: 1.5rem;">
+                    <div style="background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); width: 60px; height: 60px; border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                        <i class="fas fa-ban" style="color: white; font-size: 1.5rem;"></i>
+                    </div>
+                    <div>
+                        <h4 style="color: var(--text); margin-bottom: 0.5rem; font-size: 1.3rem;">Never Shared or Sold</h4>
+                        <p style="color: var(--text-light); line-height: 1.6; margin: 0;">
+                            We will never share your emails with third parties or sell your data.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="privacy-card">
+                <div style="display: flex; align-items: flex-start; gap: 1.5rem;">
+                    <div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); width: 60px; height: 60px; border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                        <i class="fas fa-search" style="color: white; font-size: 1.5rem;"></i>
+                    </div>
+                    <div>
+                        <h4 style="color: var(--text); margin-bottom: 0.5rem; font-size: 1.3rem;">Research for Good</h4>
+                        <p style="color: var(--text-light); line-height: 1.6; margin: 0;">
+                            Analysis helps us learn about new threats and strengthen protection tools.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="privacy-card">
+                <div style="display: flex; align-items: flex-start; gap: 1.5rem;">
+                    <div style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); width: 60px; height: 60px; border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                        <i class="fas fa-heart" style="color: white; font-size: 1.5rem;"></i>
+                    </div>
+                    <div>
+                        <h4 style="color: var(--text); margin-bottom: 0.5rem; font-size: 1.3rem;">Built to Help</h4>
+                        <p style="color: var(--text-light); line-height: 1.6; margin: 0;">
+                            Our purpose is to protect you and improve cybersecurity for everyone.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="privacy-card">
+                <div style="display: flex; align-items: flex-start; gap: 1.5rem;">
+                    <div style="background: linear-gradient(135deg, var(--primary) 0%, #3b5bdb 100%); width: 60px; height: 60px; border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                        <i class="fas fa-shield-alt" style="color: white; font-size: 1.5rem;"></i>
+                    </div>
+                    <div>
+                        <h4 style="color: var(--text); margin-bottom: 0.5rem; font-size: 1.3rem;">Secure & Anonymous</h4>
+                        <p style="color: var(--text-light); line-height: 1.6; margin: 0;">
+                            All emails are processed securely, anonymized, and handled with care.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
